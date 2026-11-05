@@ -1,0 +1,31 @@
+[package]
+name = "maexchen_spectator"
+description = "Spectator for the Maexchen server that shows scores and rounds live"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[lib]
+name = "maexchen_spectator_core"
+path = "src/lib.rs"
+
+[[bin]]
+name = "maexchen_spectator"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = { workspace = true }
+clap = { workspace = true }
+clap-verbosity-flag = { workspace = true }
+eframe = { version = ">=0.33.3, <0.34", default-features = false, features = ["default_fonts", "glow", "wayland", "x11"] }
+egui_plot = { version = ">=0.34.1, <0.35", default-features = false }
+log = { workspace = true }
+log4rs = { workspace = true }
+maexchen_bot = { path = "../clients/rust" }
+
+[dev-dependencies]
+maexchen_server = { path = "../server" }
+tokio = { workspace = true, features = ["rt-multi-thread"] }
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ["cfg(tarpaulin_include)"] }

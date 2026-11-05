@@ -1,0 +1,30 @@
+[package]
+name = "maexchen_bot-fuzz"
+version = "0.0.0"
+edition = "2024"
+publish = false
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = ">=0.4"
+arbitrary = { version = ">=1", features = ["derive"] }
+maexchen_server = { path = ".." }
+
+[workspace]
+members = ["."]
+
+[[bin]]
+name = "parse_command"
+path = "fuzz_targets/parse_command.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "game_events"
+path = "fuzz_targets/game_events.rs"
+test = false
+doc = false
+bench = false

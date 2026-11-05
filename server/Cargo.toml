@@ -1,0 +1,36 @@
+[package]
+name = "maexchen_server"
+description = "Maexchen game server"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[lib]
+name = "maexchen"
+path = "src/lib.rs"
+
+[[bin]]
+name = "maexchen_server"
+path = "src/main.rs"
+
+[[bench]]
+name = "game"
+harness = false
+
+[dependencies]
+anyhow = { workspace = true }
+clap = { workspace = true }
+clap-verbosity-flag = { workspace = true }
+derive_more = { workspace = true }
+log = { workspace = true }
+log4rs = { workspace = true }
+rand = { workspace = true }
+thiserror = { workspace = true }
+tokio = { workspace = true }
+uuid = { workspace = true }
+
+[dev-dependencies]
+criterion = { workspace = true }
+maexchen_bot = { path = "../clients/rust" }
+proptest = { workspace = true }
+rstest = { workspace = true }
