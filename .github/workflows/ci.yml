@@ -185,7 +185,7 @@ jobs:
       - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@v10.1.0
       - run: uv run --group test --with coverage coverage run -m pytest -q
-      - run: uv run --with coverage coverage report --include='src/*' --fail-under=75
+      - run: uv run --with coverage coverage report --include='src/*' --fail-under=80
 
   # Zwei Minuten je Ziel; läuft das häufiger rot, lässt sich der Job wieder entfernen.
   fuzz:
