@@ -187,6 +187,26 @@ jobs:
       - run: uv run --group test --with coverage coverage run -m pytest -q
       - run: uv run --with coverage coverage report --include='src/*' --fail-under=80
 
+  java-coverage:
+    name: Java (Coverage)
+    needs: java-test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: clients/java
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: gradle/actions/setup-gradle@v6
+      - run: ./gradlew test jacocoTestCoverageVerification
+      - uses: actions/upload-artifact@v7
+        with:
+          name: java-coverage
+          path: clients/java/build/reports/jacoco/test/jacocoTestReport.xml
+
   # Zwei Minuten je Ziel; läuft das häufiger rot, lässt sich der Job wieder entfernen.
   fuzz:
     name: Fuzzing (${{ matrix.target }})
