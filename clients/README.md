@@ -16,7 +16,7 @@ Hinweisen zum Schreiben eines eigenen Bots.
 
 | Verzeichnis | Voraussetzung | Starten |
 |---|---|---|
-| `python/` | Python ab 3.11, [uv](https://docs.astral.sh/uv/) | `cd python && uv run maexchen-bot -i <server-ip> -p <port> -n <dein-name> -t simple` |
+| `python/` | Python ab 3.10, [uv](https://docs.astral.sh/uv/) | `cd python && uv run maexchen-bot -i <server-ip> -p <port> -n <dein-name> -t simple` |
 | `java/` | JDK 21 | `cd java && ./gradlew run --args="-i <server-ip> -p <port> -n <dein-name> -t simple"` |
 | `rust/` | Rust ab 1.88 | `cd rust && cargo run -- -i <server-ip> -p <port> -n <dein-name> -t simple` |
 

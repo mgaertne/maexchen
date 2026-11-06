@@ -7,7 +7,7 @@ Verzeichnis darüber.
 
 ## Starten
 
-Du brauchst Python ab 3.11 und [uv](https://docs.astral.sh/uv/). Weitere Pakete sind nicht
+Du brauchst Python ab 3.10 und [uv](https://docs.astral.sh/uv/). Weitere Pakete sind nicht
 nötig. Im Verzeichnis `python/`:
 
 ```sh

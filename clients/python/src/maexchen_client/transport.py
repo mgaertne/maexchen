@@ -1,8 +1,12 @@
 """How messages get to and from the server."""
 
+from __future__ import annotations
+
 import socket
-from types import TracebackType
-from typing import Protocol, Self
+from typing import TYPE_CHECKING, Protocol
+
+if TYPE_CHECKING:
+    from types import TracebackType
 
 POLL_INTERVAL = 0.25
 MAX_DATAGRAM_SIZE = 2048
@@ -40,7 +44,7 @@ class UdpTransport:
     def close(self) -> None:
         self._socket.close()
 
-    def __enter__(self) -> Self:
+    def __enter__(self) -> UdpTransport:
         return self
 
     def __exit__(
