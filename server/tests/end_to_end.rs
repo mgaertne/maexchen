@@ -97,24 +97,40 @@ async fn two_players_and_a_spectator_get_through_a_round() {
 
     for player in [&anna, &bert] {
         let seen = commands(player);
-        assert!(seen.contains(&"ROUND STARTED".to_string()), "{seen:?}");
-        assert!(seen.contains(&"PLAYER LOST".to_string()), "{seen:?}");
+        assert!(
+            seen.iter().any(|command| command == "ROUND STARTED"),
+            "{seen:?}"
+        );
+        assert!(
+            seen.iter().any(|command| command == "PLAYER LOST"),
+            "{seen:?}"
+        );
     }
     let turns = [&anna, &bert]
         .iter()
-        .filter(|player| commands(player).contains(&"YOUR TURN".to_string()))
+        .filter(|player| {
+            commands(player)
+                .iter()
+                .any(|command| command == "YOUR TURN")
+        })
         .count();
     assert!(turns >= 1, "somebody had a turn");
 
     let watched = commands(&zoe);
     assert!(
-        watched.contains(&"ROUND STARTED".to_string()),
+        watched.iter().any(|command| command == "ROUND STARTED"),
         "{watched:?}"
     );
-    assert!(watched.contains(&"PLAYER LOST".to_string()), "{watched:?}");
-    assert!(!watched.contains(&"YOUR TURN".to_string()), "{watched:?}");
     assert!(
-        !watched.contains(&"ROUND STARTING".to_string()),
+        watched.iter().any(|command| command == "PLAYER LOST"),
+        "{watched:?}"
+    );
+    assert!(
+        !watched.iter().any(|command| command == "YOUR TURN"),
+        "{watched:?}"
+    );
+    assert!(
+        !watched.iter().any(|command| command == "ROUND STARTING"),
         "{watched:?}"
     );
 }
