@@ -3,7 +3,7 @@ import net.ltgt.gradle.errorprone.errorprone
 plugins {
     application
     jacoco
-    id("com.diffplug.spotless") version "8.11.0"
+    id("com.diffplug.spotless") version "8.12.0"
     id("net.ltgt.errorprone") version "5.2.0"
 }
 
