@@ -58,7 +58,7 @@ jobs:
         working-directory: clients/python
     steps:
       - uses: actions/checkout@v7
-      - uses: astral-sh/setup-uv@v10.3.3
+      - uses: astral-sh/setup-uv@v10.4.0
       - run: uv sync --group lint --group test
       - name: ruff check
         run: uv run --group lint --group test ruff check src tests
@@ -131,7 +131,7 @@ jobs:
         python: ["3.10", "3.11", "3.12", "3.13", "3.14", "3.15"]
     steps:
       - uses: actions/checkout@v7
-      - uses: astral-sh/setup-uv@v10.3.3
+      - uses: astral-sh/setup-uv@v10.4.0
       - run: uv run --python ${{ matrix.python }} --group test pytest -q
 
   # Die Java-Version steht über die Toolchain in build.gradle.kts fest (JDK 21), eine Matrix
@@ -183,7 +183,7 @@ jobs:
         working-directory: clients/python
     steps:
       - uses: actions/checkout@v7
-      - uses: astral-sh/setup-uv@v10.3.3
+      - uses: astral-sh/setup-uv@v10.4.0
       - run: uv run --group test --with coverage coverage run -m pytest -q
       - run: uv run --with coverage coverage report --include='src/*' --fail-under=80
 
